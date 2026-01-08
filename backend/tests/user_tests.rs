@@ -81,3 +81,27 @@ async fn test_get_user_not_found(pool: PgPool) {
         "get_user_by_id should return None for non-existent user"
     );
 }
+
+/// Test that creating a user with duplicate email fails.
+///
+/// Verifies that:
+/// - The database rejects duplicate emails
+/// - An appropriate error is returned
+#[sqlx::test(fixtures("schema"))]
+async fn test_duplicate_email_rejected(pool: PgPool) {
+    let name = "First User";
+    let email = "duplicate@example.com";
+
+    // Create first user - should succeed
+    let _first_user = create_user(&pool, name, email)
+        .await
+        .expect("Failed to create first user");
+
+    // Try to create second user with same email - should fail
+    let result = create_user(&pool, "Second User", email).await;
+
+    assert!(
+        result.is_err(),
+        "Creating user with duplicate email should fail"
+    );
+}
