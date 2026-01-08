@@ -32,6 +32,6 @@ jobs:
           fetch-depth: 0
 
       - name: Run Claude
-        uses: anthropics/claude-code-action@beta
+        uses: anthropics/claude-code-action@v1
         with:
           use_claude_code_hosted: true
