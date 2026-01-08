@@ -45,3 +45,31 @@ pub async fn create_user(pool: &PgPool, name: &str, email: &str) -> Result<User,
     .fetch_one(pool)
     .await
 }
+
+/// Retrieves a user by their ID.
+///
+/// # Arguments
+///
+/// * `pool` - Database connection pool
+/// * `id` - The unique identifier of the user to retrieve
+///
+/// # Returns
+///
+/// `Some(User)` if a user with the given ID exists, `None` otherwise.
+///
+/// # Errors
+///
+/// Returns an error if the database connection fails.
+pub async fn get_user_by_id(pool: &PgPool, id: i32) -> Result<Option<User>, sqlx::Error> {
+    sqlx::query_as!(
+        User,
+        r#"
+        SELECT id, name, email, created_at
+        FROM users
+        WHERE id = $1
+        "#,
+        id
+    )
+    .fetch_optional(pool)
+    .await
+}
