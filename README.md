@@ -68,8 +68,8 @@ The API server starts at `http://localhost:3000`.
 
 ```bash
 cd frontend
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 The frontend starts at `http://localhost:3001` (or the next available port).
@@ -89,7 +89,7 @@ cargo clippy         # Run linter
 
 ```bash
 cd frontend
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run lint         # Run ESLint
+pnpm dev             # Start development server
+pnpm build           # Build for production
+pnpm lint            # Run ESLint
 ```
