@@ -62,5 +62,22 @@ async fn test_get_user_by_id(pool: PgPool) {
     assert_eq!(retrieved_user.created_at, created_user.created_at);
 }
 
-// Test functions will be added in subsequent subtasks:
-// - subtask-7-4: test_get_user_not_found
+/// Test that get_user_by_id returns None for non-existent user.
+///
+/// Verifies that:
+/// - get_user_by_id returns Ok(None) when user does not exist
+/// - No error is raised for missing user (it's an expected case)
+#[sqlx::test(fixtures("schema"))]
+async fn test_get_user_not_found(pool: PgPool) {
+    // Use an ID that definitely doesn't exist
+    let non_existent_id = 99999;
+
+    let result = get_user_by_id(&pool, non_existent_id)
+        .await
+        .expect("Database query should succeed");
+
+    assert!(
+        result.is_none(),
+        "get_user_by_id should return None for non-existent user"
+    );
+}
