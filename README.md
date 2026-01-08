@@ -42,6 +42,7 @@ docker compose up -d
 ```
 
 This starts PostgreSQL on port 5432 with:
+
 - User: `postgres`
 - Password: `postgres`
 - Database: `merged`

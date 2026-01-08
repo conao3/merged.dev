@@ -39,6 +39,7 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 The application uses Next.js App Router with:
+
 - `app/layout.tsx` - Root layout component
 - `app/page.tsx` - Homepage component
 

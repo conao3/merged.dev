@@ -1,9 +1,9 @@
 #![allow(unused_imports)]
 
-use backend::models::user::{create_user, User};
+use backend::models::user::{User, create_user};
 use backend::models::user_detail::{
-    create_user_detail, delete_user_detail, get_user_detail_by_user_id, update_user_detail,
-    UserDetail,
+    UserDetail, create_user_detail, delete_user_detail, get_user_detail_by_user_id,
+    update_user_detail,
 };
 use sqlx::PgPool;
 use uuid::Uuid;

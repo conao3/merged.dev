@@ -6,7 +6,7 @@
 
 #![allow(unused_imports)]
 
-use backend::models::user::{create_user, get_user_by_id, User};
+use backend::models::user::{User, create_user, get_user_by_id};
 use sqlx::PgPool;
 use uuid::Uuid;
 
@@ -62,4 +62,3 @@ async fn test_get_user_not_found(pool: PgPool) {
         "get_user_by_id should return None for non-existent user"
     );
 }
-
