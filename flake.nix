@@ -33,6 +33,9 @@
             pkgs.nodejs_20
             pkgs.pnpm
 
+            # Database tools
+            pkgs.sqldef
+
             # Common tools
             pkgs.git
           ];
