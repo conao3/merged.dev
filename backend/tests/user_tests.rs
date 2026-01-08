@@ -34,6 +34,33 @@ async fn test_create_user(pool: PgPool) {
     assert!(user.id > 0, "User id should be auto-generated and positive");
 }
 
+/// Test that a user can be retrieved by id.
+///
+/// Verifies that:
+/// - get_user_by_id returns Some(user) when user exists
+/// - The returned user has the correct id, name, and email
+#[sqlx::test(fixtures("schema"))]
+async fn test_get_user_by_id(pool: PgPool) {
+    // First, create a user to retrieve
+    let name = "Get User Test";
+    let email = "getuser@example.com";
+
+    let created_user = create_user(&pool, name, email)
+        .await
+        .expect("Failed to create user");
+
+    // Now retrieve the user by id
+    let retrieved_user = get_user_by_id(&pool, created_user.id)
+        .await
+        .expect("Failed to get user by id")
+        .expect("User should exist");
+
+    // Verify the retrieved user matches the created user
+    assert_eq!(retrieved_user.id, created_user.id);
+    assert_eq!(retrieved_user.name, name);
+    assert_eq!(retrieved_user.email, email);
+    assert_eq!(retrieved_user.created_at, created_user.created_at);
+}
+
 // Test functions will be added in subsequent subtasks:
-// - subtask-7-3: test_get_user_by_id
 // - subtask-7-4: test_get_user_not_found
