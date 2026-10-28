@@ -4,9 +4,9 @@ A full-stack web application with a Next.js frontend and Rust backend.
 
 ## Tech Stack
 
-- **Frontend**: Next.js 14 (App Router), React 18, TypeScript
+- **Frontend**: Next.js 16 (App Router), React 19, TypeScript 6
 - **Backend**: Rust, Axum, SQLx
-- **Database**: PostgreSQL 16
+- **Database**: PostgreSQL 17
 - **Infrastructure**: Docker Compose
 
 ## Project Structure
@@ -29,7 +29,7 @@ merged.dev/
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) (v18+)
+- [Node.js](https://nodejs.org/) (v26+)
 - [Rust](https://rustup.rs/) (latest stable)
 - [Docker](https://www.docker.com/) and Docker Compose
 
