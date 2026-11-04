@@ -27,13 +27,11 @@
         system,
         ...
       }: let
-        overlay = final: prev: {
-          nodejs = prev.nodejs_latest;
-        };
         pkgs = import inputs.nixpkgs {
           inherit system;
-          overlays = [(import inputs.rust-overlay) overlay];
+          overlays = [(import inputs.rust-overlay)];
         };
+        nodejs = pkgs.nodejs_26;
         rustToolchain = pkgs.rust-bin.stable.latest.default.override {
           extensions = ["rust-src" "rust-analyzer" "clippy"];
         };
